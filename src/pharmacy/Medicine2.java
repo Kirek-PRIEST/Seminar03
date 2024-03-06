@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Medicine2 implements Iterable<MedicineComponent> {
+public class Medicine2 implements Iterable<MedicineComponent>, Comparable<Medicine2> {
     private List<MedicineComponent> components;
     private int index;
 
@@ -16,7 +16,13 @@ public class Medicine2 implements Iterable<MedicineComponent> {
         components.add(component);
         return this;
     }
-
+    public double getWeight() {
+        int weight = 0;
+        for (MedicineComponent component : components) {
+            weight += (int) component.getWeight();
+        }
+        return weight;
+    }
 //    @Override
 //    public boolean hasNext() {
 //        //return components.iterator().hasNext();
@@ -47,5 +53,16 @@ public class Medicine2 implements Iterable<MedicineComponent> {
                 return components.get(index++);
             }
         };
+    }
+
+
+    @Override
+    public int compareTo(Medicine2 o) {
+        if (this.getWeight() > o.getWeight()){
+            return 1;
+        } else if (this.getWeight() < o.getWeight()) {
+            return -1;
+        }
+        else return 0;
     }
 }

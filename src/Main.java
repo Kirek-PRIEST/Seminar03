@@ -1,8 +1,3 @@
-import client.*;
-import client.imple.owners.Owner;
-import client.imple.patients.*;
-import client.imple.personal.Doctor;
-import client.imple.personal.Nurse;
 import pharmacy.Medicine;
 import pharmacy.Medicine2;
 import pharmacy.MedicineComponent;
@@ -10,64 +5,20 @@ import pharmacy.imple.Azitromid;
 import pharmacy.imple.Peniciline;
 import pharmacy.imple.Vetbicid;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-//        //Создание персонала
-//        Doctor doc = new Doctor();
-//        Doctor doc2 = new Doctor("Врач", "Джеймс Хэриот", LocalDate.of(1921, 5, 14),
-//                                "Йоркшир", "Ассистент", LocalDate.of(1939, 5, 30));
-//        Nurse nurse = new Nurse("Сестра", "миссис Холл", LocalDate.of(1912, 1, 16),
-//                                "Йоркшир", "Экономка", LocalDate.of(1940, 6, 18));
-//        //Создание пациентов
-//        Swift swift = new Swift("Тейлоу", 3, LocalDate.of(2012, 7, 18), new Owner(), "Летает слишком быстро");
-//        Seal seal = new Seal("Сил", 15, LocalDate.of(1936, 8, 21), new Owner(), "Дискинеия задних конечностей");
-//        Cat cat = new Cat("Кот", 5, LocalDate.of(2022, 11, 23), new Owner(), "Опупение 5 степени");
-//        Duck duck = new Duck("Псайдак", 4, LocalDate.of(2020, 6, 22), new Owner(), "Не болит голова");
-//        FlyingFish flyingFish = new FlyingFish("Летучка", 1, LocalDate.of(2023, 1, 30), new  Owner(), "Не может приводниться");
-//        Straus straus = new Straus("Дудорио", 82, LocalDate.of(2019, 04, 6), new Owner(), "Не могут сооброзить на троих");
-//        //Создание клиники и наполнение песоналом
-//        VeterinaryClinic clinic = new VeterinaryClinic();
-//        clinic.toHire(doc);
-//        clinic.toHire(doc2);
-//        clinic.toHire(nurse);
-//        //Наполнение пациентами
-//        clinic.toAccept(swift);
-//        clinic.toAccept(seal);
-//        clinic.toAccept(cat);
-//        clinic.toAccept(duck);
-//        clinic.toAccept(flyingFish);
-//        clinic.toAccept(straus);
-//        //Список персонала
-//        System.out.println("Персонал:");
-//        for (int i = 0; i < clinic.personals.size(); i++) {
-//            System.out.println(clinic.personals.get(i));
-//        }
-//        clinic.toFire(); //Уволить персонал
-//        System.out.println();
-//        //Список пациентов
-//        System.out.println("Пациенты:");
-//        for (int i = 0; i < clinic.patients.size(); i++) {
-//            System.out.println(clinic.patients.get(i));
-//        }
-//        clinic.toDischarge(); //Выписать пациента
-//        //Списки пациентов по способностям
-//        clinic.sweeming();
-//        clinic.going();
-//        clinic.flying();
-        ArrayList<MedicineComponent> medList = new ArrayList<>();
+
+
         MedicineComponent azit = new Azitromid("Азитромид", 1, 70);
         MedicineComponent pen = new Peniciline("Пеницилин", 500, 100);
         MedicineComponent ved = new Vetbicid("Ветбицид", 10, 50);
-        Medicine2 medicine1 = new Medicine2();
-        medicine1.addComponent(azit).addComponent(pen).addComponent(ved);
+        MedicineComponent ved1 = new Vetbicid("Ветбицид", 5, 50);
+//        Medicine2 medicine1 = new Medicine2();
+//        medicine1.addComponent(azit).addComponent(pen).addComponent(ved);
 //        for (MedicineComponent component : medicine1) {
 //
 //        }
@@ -79,13 +30,41 @@ public class Main {
 //            System.out.println(component);
 //
 //        }
-        medList.add(azit);
-        medList.add(pen);
-        medList.add(ved);
-        System.out.println(medList);
-        Collections.sort(medList, (comp1, comp2) -> (int)(comp1.getWeight() - comp2.getWeight()));
-        System.out.println(medList);
 
 
+//        for (MedicineComponent component : medList) {
+//            System.out.println(component);
+//        }
+//        System.out.println();
+
+//        Collections.sort(medList, (comp1, comp2) -> (int)(comp1.getPower() - comp2.getPower()));
+//        System.out.println(medList);
+        Medicine2 medicine1 = new Medicine2();
+        Medicine2 medicine = new Medicine2();
+        Medicine2 medicine2 = new Medicine2();
+
+        medicine1.addComponent(azit).addComponent(ved).addComponent(pen).addComponent(ved1);
+        medicine.addComponent(azit).addComponent(azit).addComponent(azit).addComponent(azit);
+        medicine2.addComponent(ved).addComponent(ved).addComponent(ved1).addComponent(ved1);
+        ArrayList<Medicine2> med = new ArrayList<>();
+        med.add(medicine2);
+        med.add(medicine1);
+        med.add(medicine);
+        for (Medicine2 medicineComponents : med) {
+            System.out.println(medicineComponents.getWeight());
+            for (MedicineComponent component : medicineComponents) {
+                System.out.println(component);
+            }
+            System.out.println();
+        }
+        Collections.sort(med);
+        System.out.println("После сортировки");
+        for (Medicine2 medicineComponents : med){
+            System.out.println(medicineComponents.getWeight());
+            for (MedicineComponent component : medicineComponents) {
+                System.out.println(component);
+            }
+        }
+        System.out.println(med);
     }
 }

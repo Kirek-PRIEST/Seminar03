@@ -16,7 +16,13 @@ public class Medicine implements Iterator<MedicineComponent> {
         components.add(component);
         return this;
     }
-
+    private double getWeight(){
+        int weight = 0;
+        for (MedicineComponent component : components){
+            weight += (int) component.getWeight();
+        }
+        return weight;
+    }
     @Override
     public boolean hasNext() {
         //return components.iterator().hasNext();
@@ -33,4 +39,6 @@ public class Medicine implements Iterator<MedicineComponent> {
     public String toString() {
         return "Medicine: " + components.toString();
     }
+
+
 }
